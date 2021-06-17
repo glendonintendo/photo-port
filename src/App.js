@@ -5,6 +5,7 @@ import Gallery from './components/Gallery';
 import ContactForm from './components/Contact'; 
 
 function App() {
+	const [contactSelected, setContactSelected] = useState(false);
 	const [categories] = useState([
 		{
 			name: "commercial",
@@ -26,11 +27,19 @@ function App() {
 				categories={categories}
 				setCurrentCategory={setCurrentCategory}
 				currentCategory={currentCategory}
+				contactSelected={contactSelected}
+				setContactSelected={setContactSelected}
 			/>
 			<main>
-				<ContactForm />
-				<Gallery currentCategory={currentCategory} />
-				<About />
+				{!contactSelected ? (
+					<>
+						<Gallery currentCategory={currentCategory} />
+						<About />
+					</>
+				) : (
+					<ContactForm />
+				)}
+				
 			</main>
 		</div>
 	);
